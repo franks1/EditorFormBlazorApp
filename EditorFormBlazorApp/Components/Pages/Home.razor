@@ -1,0 +1,22 @@
+﻿@page "/"
+@using EditorFormBlazorApp.Data
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<!--SPINNER KEEPS ON LOADING INFINETLY WITHOUT RENDERING THE FORM-->
+<EditorForm TModel="Person" Model="person">
+    <FieldItems>
+        <EditorItem @bind-Field="@context.username"></EditorItem>
+        <EditorItem @bind-Field="@context.address"></EditorItem>
+    </FieldItems>
+    <Buttons>
+        <Button ButtonType="ButtonType.Submit" Color="Color.Secondary" Text="Submit"></Button>
+    </Buttons>
+</EditorForm>
+
+@code{
+
+    Person person { get; set; } = new Person() { };
+
+}
