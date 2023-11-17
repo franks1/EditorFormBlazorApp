@@ -1,22 +1,39 @@
 ﻿@page "/"
 @using EditorFormBlazorApp.Data
-<PageTitle>Home</PageTitle>
-
-<h1>Hello, world!</h1>
-
+@rendermode InteractiveServer
 <!--SPINNER KEEPS ON LOADING INFINETLY WITHOUT RENDERING THE FORM-->
-<EditorForm TModel="Person" Model="person">
-    <FieldItems>
-        <EditorItem @bind-Field="@context.username"></EditorItem>
-        <EditorItem @bind-Field="@context.address"></EditorItem>
-    </FieldItems>
-    <Buttons>
-        <Button ButtonType="ButtonType.Submit" Color="Color.Secondary" Text="Submit"></Button>
-    </Buttons>
-</EditorForm>
-
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+    <ValidateForm Model=@person OnInvalidSubmit="invalidDetails" OnValidSubmit="saveDetails">
+        <EditorForm ItemsPerRow=1 TModel="Person" Model="person">
+            <FieldItems>
+                <EditorItem @bind-Field="@context.username"></EditorItem>
+                <EditorItem @bind-Field="@context.address"></EditorItem>
+            </FieldItems>
+            <Buttons>
+                <Button class="w-100 fa-solid" Icon="bi bi-check"
+                ButtonType="ButtonType.Submit" Color="Color.Secondary" Text="SaveDetails"></Button>
+            </Buttons>
+        </EditorForm>
+    </ValidateForm>
+</div>
+<div class="col-md-4"></div>
+</div>
 @code{
 
     Person person { get; set; } = new Person() { };
+
+
+    public async Task invalidDetails(EditContext context)
+    {
+        await Task.CompletedTask;
+    }
+
+    public async Task saveDetails(EditContext context)
+    {
+
+        await Task.CompletedTask;
+    }
 
 }
